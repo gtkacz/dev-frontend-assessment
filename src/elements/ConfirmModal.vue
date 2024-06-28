@@ -74,5 +74,6 @@ export default {
 <style lang="scss" scoped>
     .button {
         min-width:180px;
+        color: white;
     }
 </style>
