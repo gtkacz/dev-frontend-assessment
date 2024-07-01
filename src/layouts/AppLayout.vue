@@ -13,9 +13,17 @@
                         <i class="fa fa-home"></i>
                     </router-link>
                     <router-link :to="{ name: $ROUTES.SYMBOLS }" exact class="item tooltip is-tooltip-right"
-                        data-tooltip="Symbols">
+                        data-tooltip="Tickers">
                         <i class="fa fa-briefcase"></i>
                     </router-link>
+                    <!-- <router-link :to="{ name: $ROUTES.ABOUT }" exact class="item tooltip is-tooltip-right"
+                        data-tooltip="About">
+                        <i class="fa fa-question"></i>
+                    </router-link> -->
+                    <a href="https://github.com/gtkacz/dev-frontend-assessment" target="_blank" class="item tooltip is-tooltip-right"
+                        data-tooltip="Repository">
+                        <i class="fa fa-github"></i>
+                    </a>
                 </div>
             </div>
 
@@ -37,15 +45,14 @@
 
 <script>
 export default {
-    name: 'AppLayout',
+    name: 'AppLayout'
 }
 </script>
 
 <style scoped lang="scss">
-@import "../assets/css/_theme.scss";
+@import "../assets/css/app.scss";
 
 .primary-layout-con {
-
     width: 100%;
     height: 100%;
     display: block;
@@ -59,7 +66,6 @@ export default {
         backdrop-filter: blur(3ch);
         text-align: center;
         position: fixed;
-        height: 100vh;
         top: 0;
         //keeps tooltips from getting hidden behind main page content
         z-index: 1;
@@ -80,13 +86,13 @@ export default {
             display: block;
             width: 100%;
             padding: 15px 0;
-            color: $white-bis;
+            color: $white-bis !important;
             cursor: pointer;
 
             &.router-link-active,
             &router-link-exact-active {
                 border-left: 2px solid $primary;
-                color: $primary;
+                color: $primary !important;
             }
 
             &.is-dashboard {
@@ -94,11 +100,12 @@ export default {
             }
 
             &:not(.router-link-active) {
+                border-left: 2px solid white;
+
                 &:hover {
-                    transition: color 0.3s ease-in-out;
-                    transition: border-left 0.1s ease-in-out;
+                    transition: all 0.1s ease-in-out;
                     border-left: 2px solid $primary;
-                    color: $primary;
+                    color: $primary !important;
                 }
             }
 

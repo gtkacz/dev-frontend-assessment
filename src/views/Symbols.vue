@@ -8,22 +8,17 @@
 
       <div class="page-content-con">
           <loading v-if="loading"></loading>
-          <div v-else>
-              <div
-                  v-for="ticker in tickers"
-                  :key="ticker.symbol"
-                  class="ticker"
-              >
-                  <h5 class="heading is-size-5">{{ticker.displaySymbol}} : <small class="is-size-7">{{ticker.description}}</small></h5>
-              </div>
-          </div>
+          <main v-else>
+            <div>
+                <TickerTable :tickers="tickers"/>
+            </div>
+        </main>
       </div>
 
     </div>
 </template>
 
 <script>
-
 import FinnhubApi from "@/api/FinnhubApi";
 
 export default {

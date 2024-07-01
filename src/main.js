@@ -20,6 +20,8 @@ import DropdownSelection from './elements/DropdownSelection'
 import PluralWord from './elements/PluralWord';
 import OxfordCommaList from './elements/OxfordCommaList';
 import DocumentTitle from './components/DocumentTitle';
+import TickerCard from "./components/TickerCard";
+import TickerTable from "./components/TickerTable";
 
 // Register Custom Elements
 Vue.component('loading', Loading);
@@ -34,6 +36,8 @@ Vue.component('dropdown-selection', DropdownSelection);
 Vue.component('plural-word', PluralWord);
 Vue.component('oxford-comma-list', OxfordCommaList);
 Vue.component('DocumentTitle', DocumentTitle);
+Vue.component('TickerCard', TickerCard);
+Vue.component('TickerTable', TickerTable);
 
 //Custom Layouts
 import AppLayout from './layouts/AppLayout'
