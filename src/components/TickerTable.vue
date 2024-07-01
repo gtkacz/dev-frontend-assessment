@@ -1,27 +1,49 @@
 <template>
   <div>
-    <div>
-      <input
-        type="text"
-        v-model="searchDescription"
-        placeholder="Search description..."
-      />
-      <input type="text" v-model="searchSymbol" placeholder="Search symbol..." />
-      <input type="text" v-model="searchCurrency" placeholder="Search currency..." />
-      <input type="text" v-model="searchType" placeholder="Search type..." />
+    <i class="fa fa-search" @click="showSearch = !showSearch" style="cursor: pointer" :style="{color: showSearch ? `orange` : `grey`}" />
+    <div class="table-headers">
+      <div>
+        <div>
+          <input
+            type="text"
+            v-model="searchDescription"
+            placeholder="Description"
+            v-if="showSearch"
+          />
+          <span v-else @click="sortBy('description')"> Description </span>
+          <i :class="sortIcon('description')" @click="sortBy('description')"></i>
+        </div>
+  
+        <div>
+          <input
+            type="text"
+            v-model="searchSymbol"
+            placeholder="Symbol"
+            v-if="showSearch"
+          />
+          <span v-else @click="sortBy('symbol')"> Symbol </span>
+          <i :class="sortIcon('symbol')" @click="sortBy('symbol')"></i>
+        </div>
+      </div>
+
+      <div>
+        <input
+          type="text"
+          v-model="searchCurrency"
+          placeholder="Currency"
+          v-if="showSearch"
+        />
+        <span v-else @click="sortBy('currency')"> Currency </span>
+        <i :class="sortIcon('currency')" @click="sortBy('currency')"></i>
+      </div>
+
+      <div>
+        <input type="text" v-model="searchType" placeholder="Type" v-if="showSearch" />
+        <span v-else @click="sortBy('type')"> Type </span>
+        <i :class="sortIcon('type')" @click="sortBy('type')"></i>
+      </div>
     </div>
-    <div>
-      <span @click="sortBy('description')">
-        Description <i :class="sortIcon('description')"></i>
-      </span>
-      <span @click="sortBy('displaySymbol')">
-        Symbol <i :class="sortIcon('displaySymbol')"></i>
-      </span>
-      <span @click="sortBy('currency')">
-        Currency <i :class="sortIcon('currency')"></i>
-      </span>
-      <span @click="sortBy('type')"> Type <i :class="sortIcon('type')"></i> </span>
-    </div>
+
     <div v-for="ticker in paginatedTickers" :key="ticker.displaySymbol">
       <TickerCard :ticker="ticker" />
     </div>
@@ -43,6 +65,7 @@
 
 <script>
 import TickerCard from "./TickerCard.vue";
+import "../assets/css/app.scss";
 
 export default {
   name: "TickerTable",
@@ -71,6 +94,7 @@ export default {
       perPage: this.maxPerPage,
       sortKey: this.initialSortColumn,
       sortOrder: 1, // default to ascending order
+      showSearch: false,
     };
   },
   computed: {
@@ -124,10 +148,10 @@ export default {
       }
     },
     sortIcon(key) {
-      if (this.sortKey !== key) return "fas fa-sort";
-      if (this.sortOrder === 1) return "fas fa-sort-up";
-      if (this.sortOrder === -1) return "fas fa-sort-down";
-      return "fas fa-sort";
+      if (this.sortKey !== key) return "fa fa-sort";
+      if (this.sortOrder === 1) return "fa fa-sort-up";
+      if (this.sortOrder === -1) return "fa fa-sort-down";
+      return "fa fa-sort";
     },
   },
   watch: {
@@ -173,6 +197,39 @@ export default {
   &[disabled] {
     color: $grey-dark;
     cursor: not-allowed;
+  }
+}
+
+input {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid $font-color;
+  border-radius: 0.5rem;
+  background-color: transparent;
+
+  &:focus {
+    outline: none;
+    border: 1px solid $primary;
+  }
+}
+
+.table-headers {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10vw;
+  margin-bottom: 1rem;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: default;
+
+    span,
+    i {
+      cursor: pointer;
+    }
   }
 }
 </style>

@@ -92,7 +92,10 @@ export default {
             &.router-link-active,
             &router-link-exact-active {
                 border-left: 2px solid $primary;
-                color: $primary !important;
+
+                i {
+                    color: $primary !important;
+                }
             }
 
             &.is-dashboard {
@@ -103,8 +106,11 @@ export default {
                 border-left: 2px solid white;
 
                 &:hover {
-                    transition: all 0.1s ease-in-out;
                     border-left: 2px solid $primary;
+                }
+
+                &:hover i {
+                    transition: all 0.1s ease-in-out;
                     color: $primary !important;
                 }
             }

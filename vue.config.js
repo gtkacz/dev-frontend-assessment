@@ -1,21 +1,22 @@
 const CircularDependencyPlugin = require('circular-dependency-plugin')
 
 module.exports = {
-    devServer : {
-        host : 'localhost',
+    publicPath: '/dev-frontend-assessment/',
+    devServer: {
+        host: 'localhost',
     },
-    configureWebpack : {
-        plugins : [
+    configureWebpack: {
+        plugins: [
             new CircularDependencyPlugin({
                 // exclude detection of files based on a RegExp
-                exclude : /a\.js|node_modules/,
+                exclude: /a\.js|node_modules/,
                 // add errors to webpack instead of warnings
-                failOnError : true,
+                failOnError: true,
                 // allow import cycles that include an asyncronous import,
                 // e.g. via import(/* webpackMode: "weak" */ './file.js')
-                allowAsyncCycles : false,
+                allowAsyncCycles: false,
                 // set the current working directory for displaying module paths
-                cwd : process.cwd(),
+                cwd: process.cwd(),
             })
         ]
     },

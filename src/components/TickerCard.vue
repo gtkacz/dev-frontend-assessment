@@ -45,10 +45,11 @@ export default {
             transition: all 100ms ease-in-out !important;
             box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2) !important;
             border: 1px solid $primary !important;
+            border-radius: 1ch;
             cursor: pointer !important;
             transform: scale(1.02) !important;
 
-            & > * {
+            span, h5, small {
                 color: $primary !important;
             }
         }
