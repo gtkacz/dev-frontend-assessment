@@ -1,6 +1,6 @@
 <template>
   <div>
-    <i class="fa fa-search" @click="showSearch = !showSearch" style="cursor: pointer" :style="{color: showSearch ? `orange` : `grey`}" />
+    <i class="fa fa-search search_icon" @click="showSearch = !showSearch" :disabled="showSearch" />
     <div class="table-headers">
       <div>
         <div>
@@ -13,7 +13,7 @@
           <span v-else @click="sortBy('description')"> Description </span>
           <i :class="sortIcon('description')" @click="sortBy('description')"></i>
         </div>
-  
+
         <div>
           <input
             type="text"
@@ -65,109 +65,108 @@
 
 <script>
 import TickerCard from "./TickerCard.vue";
-import "../assets/css/app.scss";
 
 export default {
-  name: "TickerTable",
-  components: { TickerCard },
-  props: {
-    tickers: {
-      type: Array,
-      required: true,
+    name : "TickerTable",
+    components : { TickerCard },
+    props : {
+        tickers : {
+            type : Array,
+            required : true,
+        },
+        maxPerPage : {
+            type : Number,
+            default : 50,
+        },
+        initialSortColumn : {
+            type : String,
+            default : "description",
+        },
     },
-    maxPerPage: {
-      type: Number,
-      default: 50,
+    data() {
+        return {
+            searchDescription : "",
+            searchSymbol : "",
+            searchCurrency : "",
+            searchType : "",
+            currentPage : 1,
+            perPage : this.maxPerPage,
+            sortKey : this.initialSortColumn,
+            sortOrder : 1, // default to ascending order
+            showSearch : false,
+        };
     },
-    initialSortColumn: {
-      type: String,
-      default: "description",
+    computed : {
+        filteredTickers() {
+            return this.tickers.filter((ticker) => {
+                return (
+                    ticker.description
+                        .toLowerCase()
+                        .includes(this.searchDescription.toLowerCase())
+          && ticker.displaySymbol.toLowerCase().includes(this.searchSymbol.toLowerCase())
+          && ticker.currency.toLowerCase().includes(this.searchCurrency.toLowerCase())
+          && ticker.type.toLowerCase().includes(this.searchType.toLowerCase())
+                );
+            });
+        },
+        sortedTickers() {
+            if (!this.sortKey) return this.filteredTickers;
+            return this.filteredTickers.slice().sort((a, b) => {
+                let result = 0;
+                if (a[this.sortKey] < b[this.sortKey]) result = -1;
+                if (a[this.sortKey] > b[this.sortKey]) result = 1;
+                return result * this.sortOrder;
+            });
+        },
+        totalPages() {
+            return Math.ceil(this.sortedTickers.length / this.perPage) ? Math.ceil(this.sortedTickers.length / this.perPage) : 1;
+        },
+        paginatedTickers() {
+            const start = (this.currentPage - 1) * this.perPage;
+            const end = start + this.perPage;
+            return this.sortedTickers.slice(start, end);
+        },
     },
-  },
-  data() {
-    return {
-      searchDescription: "",
-      searchSymbol: "",
-      searchCurrency: "",
-      searchType: "",
-      currentPage: 1,
-      perPage: this.maxPerPage,
-      sortKey: this.initialSortColumn,
-      sortOrder: 1, // default to ascending order
-      showSearch: false,
-    };
-  },
-  computed: {
-    filteredTickers() {
-      return this.tickers.filter((ticker) => {
-        return (
-          ticker.description
-            .toLowerCase()
-            .includes(this.searchDescription.toLowerCase()) &&
-          ticker.displaySymbol.toLowerCase().includes(this.searchSymbol.toLowerCase()) &&
-          ticker.currency.toLowerCase().includes(this.searchCurrency.toLowerCase()) &&
-          ticker.type.toLowerCase().includes(this.searchType.toLowerCase())
-        );
-      });
+    methods : {
+        nextPage() {
+            if (this.currentPage < this.totalPages) {
+                this.currentPage++;
+            }
+        },
+        prevPage() {
+            if (this.currentPage > 1) {
+                this.currentPage--;
+            }
+        },
+        sortBy(key) {
+            if (this.sortKey === key) {
+                this.sortOrder = ((this.sortOrder + 2) % 3) - 1; // Cycle through 0, 1, -1
+            } else {
+                this.sortKey = key;
+                this.sortOrder = 1;
+            }
+        },
+        sortIcon(key) {
+            if (this.sortKey !== key) return "fa fa-sort";
+            if (this.sortOrder === 1) return "fa fa-sort-up";
+            if (this.sortOrder === -1) return "fa fa-sort-down";
+            return "fa fa-sort";
+        },
     },
-    sortedTickers() {
-      if (!this.sortKey) return this.filteredTickers;
-      return this.filteredTickers.slice().sort((a, b) => {
-        let result = 0;
-        if (a[this.sortKey] < b[this.sortKey]) result = -1;
-        if (a[this.sortKey] > b[this.sortKey]) result = 1;
-        return result * this.sortOrder;
-      });
+    watch : {
+        searchDescription() {
+            this.currentPage = 1;
+        },
+        searchSymbol() {
+            this.currentPage = 1;
+        },
+        searchCurrency() {
+            this.currentPage = 1;
+        },
+        searchType() {
+            this.currentPage = 1;
+        },
     },
-    totalPages() {
-      return Math.ceil(this.sortedTickers.length / this.perPage);
-    },
-    paginatedTickers() {
-      const start = (this.currentPage - 1) * this.perPage;
-      const end = start + this.perPage;
-      return this.sortedTickers.slice(start, end);
-    },
-  },
-  methods: {
-    nextPage() {
-      if (this.currentPage < this.totalPages) {
-        this.currentPage++;
-      }
-    },
-    prevPage() {
-      if (this.currentPage > 1) {
-        this.currentPage--;
-      }
-    },
-    sortBy(key) {
-      if (this.sortKey === key) {
-        this.sortOrder = ((this.sortOrder + 2) % 3) - 1; // Cycle through 0, 1, -1
-      } else {
-        this.sortKey = key;
-        this.sortOrder = 1;
-      }
-    },
-    sortIcon(key) {
-      if (this.sortKey !== key) return "fa fa-sort";
-      if (this.sortOrder === 1) return "fa fa-sort-up";
-      if (this.sortOrder === -1) return "fa fa-sort-down";
-      return "fa fa-sort";
-    },
-  },
-  watch: {
-    searchDescription() {
-      this.currentPage = 1;
-    },
-    searchSymbol() {
-      this.currentPage = 1;
-    },
-    searchCurrency() {
-      this.currentPage = 1;
-    },
-    searchType() {
-      this.currentPage = 1;
-    },
-  },
 };
 </script>
 
@@ -200,16 +199,22 @@ export default {
   }
 }
 
-input {
+input[type="text"] {
   margin: 0.5rem;
   padding: 0.5rem;
   border: 1px solid $font-color;
   border-radius: 0.5rem;
   background-color: transparent;
+  color: $font-color;
 
   &:focus {
+    color: $font-color;
     outline: none;
     border: 1px solid $primary;
+  }
+
+  &::placeholder {
+    color: $font-color-3;
   }
 }
 
@@ -230,6 +235,21 @@ input {
     i {
       cursor: pointer;
     }
+  }
+}
+
+.search_icon {
+  cursor: pointer;
+  color: $font-color;
+  margin-bottom: 2ch;
+
+  &:hover {
+    transition: all 05ms ease-in-out;
+    color: $primary;
+  }
+
+  &[disabled] {
+    color: $grey-dark;
   }
 }
 </style>
