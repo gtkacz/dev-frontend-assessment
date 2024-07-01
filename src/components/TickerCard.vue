@@ -40,7 +40,7 @@
       />
     </div>
     <div class="column">
-      <h5 class="is-size-5">{{ ticker.type }}</h5>
+      <h5 class="is-size-5">{{ ticker.mic }}</h5>
     </div>
   </div>
 </template>
@@ -71,6 +71,10 @@ export default {
   @extend .local-container;
 
   border: 1px solid transparent !important;
+
+  small {
+    color: $secondary !important;
+  }
 
   &:hover {
     transition: all 100ms ease-in-out !important;

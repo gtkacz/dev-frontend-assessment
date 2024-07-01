@@ -1,7 +1,7 @@
 const CircularDependencyPlugin = require('circular-dependency-plugin')
 
 module.exports = {
-    publicPath : '/dev-frontend-assessment/',
+    publicPath : '/',
     devServer : {
         host : 'localhost',
     },

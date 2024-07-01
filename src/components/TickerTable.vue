@@ -1,53 +1,63 @@
 <template>
-  <div>
-    <i class="fa fa-search search_icon" @click="showSearch = !showSearch" :disabled="showSearch" />
-    <div class="table-headers">
-      <div>
-        <div>
+  <section>
+    <div style="display: flex; margin-left: 1.25ch">
+      <i
+        class="fa fa-search search_icon"
+        @click="showSearch = !showSearch"
+        :disabled="showSearch"
+      />
+    </div>
+    <header class="table-headers">
+      <div class="column">
+        <label>
           <input
             type="text"
             v-model="searchDescription"
             placeholder="Description"
             v-if="showSearch"
           />
-          <span v-else @click="sortBy('description')"> Description </span>
+          <span v-else @click="sortBy('description')">Description</span>
           <i :class="sortIcon('description')" @click="sortBy('description')"></i>
-        </div>
+        </label>
 
-        <div>
+        <label>
           <input
             type="text"
             v-model="searchSymbol"
-            placeholder="Symbol"
+            placeholder="(Symbol)"
             v-if="showSearch"
           />
-          <span v-else @click="sortBy('symbol')"> Symbol </span>
+          <span v-else @click="sortBy('symbol')">(Symbol)</span>
           <i :class="sortIcon('symbol')" @click="sortBy('symbol')"></i>
-        </div>
+        </label>
       </div>
 
-      <div>
+      <label class="column">
         <input
           type="text"
           v-model="searchCurrency"
           placeholder="Currency"
           v-if="showSearch"
         />
-        <span v-else @click="sortBy('currency')"> Currency </span>
+        <span v-else @click="sortBy('currency')">Currency</span>
         <i :class="sortIcon('currency')" @click="sortBy('currency')"></i>
-      </div>
+      </label>
 
-      <div>
-        <input type="text" v-model="searchType" placeholder="Type" v-if="showSearch" />
-        <span v-else @click="sortBy('type')"> Type </span>
-        <i :class="sortIcon('type')" @click="sortBy('type')"></i>
-      </div>
-    </div>
+      <label class="column">
+        <input type="text" v-model="searchMic" placeholder="MIC" v-if="showSearch" />
+        <span v-else @click="sortBy('mic')">MIC</span>
+        <i :class="sortIcon('mic')" @click="sortBy('mic')"></i>
+      </label>
+    </header>
 
-    <div v-for="ticker in paginatedTickers" :key="ticker.displaySymbol">
+    <section
+      v-for="ticker in paginatedTickers"
+      :key="ticker.displaySymbol"
+      @click="redirectToTickerPage(ticker)"
+    >
       <TickerCard :ticker="ticker" />
-    </div>
-    <div class="pagination">
+    </section>
+    <nav class="pagination">
       <i
         class="fa fa-chevron-left pagination-icon"
         @click="prevPage"
@@ -59,114 +69,122 @@
         @click="nextPage"
         :disabled="currentPage === totalPages"
       />
-    </div>
-  </div>
+    </nav>
+  </section>
 </template>
 
 <script>
 import TickerCard from "./TickerCard.vue";
 
 export default {
-    name : "TickerTable",
-    components : { TickerCard },
-    props : {
-        tickers : {
-            type : Array,
-            required : true,
-        },
-        maxPerPage : {
-            type : Number,
-            default : 50,
-        },
-        initialSortColumn : {
-            type : String,
-            default : "description",
-        },
+  name: "TickerTable",
+  components: { TickerCard },
+  props: {
+    tickers: {
+      type: Array,
+      required: true,
     },
-    data() {
-        return {
-            searchDescription : "",
-            searchSymbol : "",
-            searchCurrency : "",
-            searchType : "",
-            currentPage : 1,
-            perPage : this.maxPerPage,
-            sortKey : this.initialSortColumn,
-            sortOrder : 1, // default to ascending order
-            showSearch : false,
-        };
+    maxPerPage: {
+      type: Number,
+      default: 50,
     },
-    computed : {
-        filteredTickers() {
-            return this.tickers.filter((ticker) => {
-                return (
-                    ticker.description
-                        .toLowerCase()
-                        .includes(this.searchDescription.toLowerCase())
-          && ticker.displaySymbol.toLowerCase().includes(this.searchSymbol.toLowerCase())
-          && ticker.currency.toLowerCase().includes(this.searchCurrency.toLowerCase())
-          && ticker.type.toLowerCase().includes(this.searchType.toLowerCase())
-                );
-            });
-        },
-        sortedTickers() {
-            if (!this.sortKey) return this.filteredTickers;
-            return this.filteredTickers.slice().sort((a, b) => {
-                let result = 0;
-                if (a[this.sortKey] < b[this.sortKey]) result = -1;
-                if (a[this.sortKey] > b[this.sortKey]) result = 1;
-                return result * this.sortOrder;
-            });
-        },
-        totalPages() {
-            return Math.ceil(this.sortedTickers.length / this.perPage) ? Math.ceil(this.sortedTickers.length / this.perPage) : 1;
-        },
-        paginatedTickers() {
-            const start = (this.currentPage - 1) * this.perPage;
-            const end = start + this.perPage;
-            return this.sortedTickers.slice(start, end);
-        },
+    initialSortColumn: {
+      type: String,
+      default: "description",
     },
-    methods : {
-        nextPage() {
-            if (this.currentPage < this.totalPages) {
-                this.currentPage++;
-            }
-        },
-        prevPage() {
-            if (this.currentPage > 1) {
-                this.currentPage--;
-            }
-        },
-        sortBy(key) {
-            if (this.sortKey === key) {
-                this.sortOrder = ((this.sortOrder + 2) % 3) - 1; // Cycle through 0, 1, -1
-            } else {
-                this.sortKey = key;
-                this.sortOrder = 1;
-            }
-        },
-        sortIcon(key) {
-            if (this.sortKey !== key) return "fa fa-sort";
-            if (this.sortOrder === 1) return "fa fa-sort-up";
-            if (this.sortOrder === -1) return "fa fa-sort-down";
-            return "fa fa-sort";
-        },
+  },
+  data() {
+    return {
+      searchDescription: "",
+      searchSymbol: "",
+      searchCurrency: "",
+      searchMic: "",
+      currentPage: 1,
+      perPage: this.maxPerPage,
+      sortKey: this.initialSortColumn,
+      sortOrder: 1, // default to ascending order
+      showSearch: false,
+    };
+  },
+  computed: {
+    filteredTickers() {
+      return this.tickers.filter((ticker) => {
+        return (
+          ticker.description
+            .toLowerCase()
+            .includes(this.searchDescription.toLowerCase()) &&
+          ticker.displaySymbol.toLowerCase().includes(this.searchSymbol.toLowerCase()) &&
+          ticker.currency.toLowerCase().includes(this.searchCurrency.toLowerCase()) &&
+          ticker.mic.toLowerCase().includes(this.searchMic.toLowerCase())
+        );
+      });
     },
-    watch : {
-        searchDescription() {
-            this.currentPage = 1;
-        },
-        searchSymbol() {
-            this.currentPage = 1;
-        },
-        searchCurrency() {
-            this.currentPage = 1;
-        },
-        searchType() {
-            this.currentPage = 1;
-        },
+    sortedTickers() {
+      if (!this.sortKey) return this.filteredTickers;
+      return this.filteredTickers.slice().sort((a, b) => {
+        let result = 0;
+        if (a[this.sortKey] < b[this.sortKey]) result = -1;
+        if (a[this.sortKey] > b[this.sortKey]) result = 1;
+        return result * this.sortOrder;
+      });
     },
+    totalPages() {
+      return Math.ceil(this.sortedTickers.length / this.perPage)
+        ? Math.ceil(this.sortedTickers.length / this.perPage)
+        : 1;
+    },
+    paginatedTickers() {
+      const start = (this.currentPage - 1) * this.perPage;
+      const end = start + this.perPage;
+      return this.sortedTickers.slice(start, end);
+    },
+  },
+  methods: {
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+      }
+    },
+    prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+    sortBy(key) {
+      if (this.sortKey === key) {
+        this.sortOrder = ((this.sortOrder + 2) % 3) - 1; // Cycle through 0, 1, -1
+      } else {
+        this.sortKey = key;
+        this.sortOrder = 1;
+      }
+    },
+    sortIcon(key) {
+      if (this.sortKey !== key) return "fa fa-sort";
+      if (this.sortOrder === 1) return "fa fa-sort-up";
+      if (this.sortOrder === -1) return "fa fa-sort-down";
+      return "fa fa-sort";
+    },
+    redirectToTickerPage(ticker) {
+      this.$router.push({
+        name: "ticker",
+        params: { symbol: ticker.displaySymbol },
+      });
+    },
+  },
+  watch: {
+    searchDescription() {
+      this.currentPage = 1;
+    },
+    searchSymbol() {
+      this.currentPage = 1;
+    },
+    searchCurrency() {
+      this.currentPage = 1;
+    },
+    searchMic() {
+      this.currentPage = 1;
+    },
+  },
 };
 </script>
 
@@ -207,7 +225,13 @@ input[type="text"] {
   background-color: transparent;
   color: $font-color;
 
+  &:hover {
+    transition: all 100ms ease-in-out;
+    border: 1px solid $secondary;
+  }
+
   &:focus {
+    transition: all 100ms ease-in-out;
     color: $font-color;
     outline: none;
     border: 1px solid $primary;
@@ -225,7 +249,8 @@ input[type="text"] {
   gap: 10vw;
   margin-bottom: 1rem;
 
-  div {
+  div,
+  label {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -234,6 +259,10 @@ input[type="text"] {
     span,
     i {
       cursor: pointer;
+      &:hover {
+        transition: all 100ms ease-in-out;
+        color: $secondary;
+      }
     }
   }
 }
