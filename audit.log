@@ -1,0 +1,508 @@
+# npm audit report
+
+ajv  <6.12.3
+Severity: moderate
+Prototype Pollution in Ajv - https://github.com/advisories/GHSA-v88g-cgmw-v5xw
+fix available via `npm audit fix --force`
+Will install @vue/cli-plugin-eslint@5.0.8, which is a breaking change
+node_modules/ajv
+  ajv-keywords  2.1.1
+  Depends on vulnerable versions of ajv
+  node_modules/ajv-keywords
+  eslint  2.5.0 - 2.5.2 || 4.2.0 - 5.0.0-rc.0
+  Depends on vulnerable versions of ajv
+  Depends on vulnerable versions of table
+  node_modules/eslint
+    @vue/cli-plugin-eslint  <=5.0.0-rc.3
+    Depends on vulnerable versions of @vue/cli-shared-utils
+    Depends on vulnerable versions of eslint
+    Depends on vulnerable versions of globby
+    Depends on vulnerable versions of webpack
+    node_modules/@vue/cli-plugin-eslint
+  table  3.7.10 - 4.0.2
+  Depends on vulnerable versions of ajv
+  node_modules/table
+
+axios  <=0.27.2
+Severity: high
+Axios vulnerable to Server-Side Request Forgery - https://github.com/advisories/GHSA-4w2v-q235-vp99
+axios Inefficient Regular Expression Complexity vulnerability - https://github.com/advisories/GHSA-cph5-m8f7-6c5x
+Axios Cross-Site Request Forgery Vulnerability - https://github.com/advisories/GHSA-wf5p-g6vw-rhxx
+Depends on vulnerable versions of follow-redirects
+fix available via `npm audit fix --force`
+Will install axios@1.7.2, which is a breaking change
+node_modules/axios
+
+braces  <3.0.3
+Severity: high
+Uncontrolled resource consumption in braces - https://github.com/advisories/GHSA-grv7-fg5c-xmjg
+fix available via `npm audit fix --force`
+Will install @vue/cli-service@5.0.8, which is a breaking change
+node_modules/braces
+  chokidar  1.3.0 - 2.1.8
+  Depends on vulnerable versions of anymatch
+  Depends on vulnerable versions of braces
+  Depends on vulnerable versions of readdirp
+  node_modules/watchpack-chokidar2/node_modules/chokidar
+  node_modules/webpack-dev-server/node_modules/chokidar
+    watchpack-chokidar2  *
+    Depends on vulnerable versions of chokidar
+    node_modules/watchpack-chokidar2
+      watchpack  1.7.2 - 1.7.5
+      Depends on vulnerable versions of watchpack-chokidar2
+      node_modules/watchpack
+        webpack  4.0.0-alpha.0 - 5.0.0-rc.6
+        Depends on vulnerable versions of micromatch
+        Depends on vulnerable versions of terser-webpack-plugin
+        Depends on vulnerable versions of watchpack
+        node_modules/webpack
+          @intervolga/optimize-cssnano-plugin  *
+          Depends on vulnerable versions of cssnano
+          Depends on vulnerable versions of cssnano-preset-default
+          Depends on vulnerable versions of postcss
+          Depends on vulnerable versions of webpack
+          node_modules/@intervolga/optimize-cssnano-plugin
+          cache-loader  >=2.0.0
+          Depends on vulnerable versions of webpack
+          node_modules/cache-loader
+            @vue/cli-service  *
+            Depends on vulnerable versions of @intervolga/optimize-cssnano-plugin
+            Depends on vulnerable versions of @vue/cli-shared-utils
+            Depends on vulnerable versions of @vue/component-compiler-utils
+            Depends on vulnerable versions of autoprefixer
+            Depends on vulnerable versions of cache-loader
+            Depends on vulnerable versions of copy-webpack-plugin
+            Depends on vulnerable versions of css-loader
+            Depends on vulnerable versions of cssnano
+            Depends on vulnerable versions of file-loader
+            Depends on vulnerable versions of globby
+            Depends on vulnerable versions of html-webpack-plugin
+            Depends on vulnerable versions of mini-css-extract-plugin
+            Depends on vulnerable versions of postcss-loader
+            Depends on vulnerable versions of terser-webpack-plugin
+            Depends on vulnerable versions of vue-loader
+            Depends on vulnerable versions of webpack
+            Depends on vulnerable versions of webpack-bundle-analyzer
+            Depends on vulnerable versions of webpack-dev-server
+            node_modules/@vue/cli-service
+          compression-webpack-plugin  1.1.0 - 3.0.1
+          Depends on vulnerable versions of serialize-javascript
+          Depends on vulnerable versions of webpack
+          node_modules/compression-webpack-plugin
+          css-loader  0.15.0 - 3.3.2
+          Depends on vulnerable versions of icss-utils
+          Depends on vulnerable versions of postcss
+          Depends on vulnerable versions of postcss-modules-extract-imports
+          Depends on vulnerable versions of postcss-modules-local-by-default
+          Depends on vulnerable versions of postcss-modules-scope
+          Depends on vulnerable versions of postcss-modules-values
+          Depends on vulnerable versions of webpack
+          node_modules/css-loader
+          file-loader  3.0.0 - 4.3.0
+          Depends on vulnerable versions of webpack
+          node_modules/file-loader
+          mini-css-extract-plugin  <=0.9.0
+          Depends on vulnerable versions of webpack
+          node_modules/mini-css-extract-plugin
+          terser-webpack-plugin  <=2.2.1
+          Depends on vulnerable versions of webpack
+          node_modules/terser-webpack-plugin
+    webpack-dev-server  <=4.7.4
+    Depends on vulnerable versions of bonjour
+    Depends on vulnerable versions of chokidar
+    Depends on vulnerable versions of http-proxy-middleware
+    Depends on vulnerable versions of ip
+    Depends on vulnerable versions of selfsigned
+    Depends on vulnerable versions of webpack-dev-middleware
+    node_modules/webpack-dev-server
+  micromatch  0.2.0 - 3.1.10
+  Depends on vulnerable versions of braces
+  node_modules/micromatch
+    anymatch  1.2.0 - 2.0.0
+    Depends on vulnerable versions of micromatch
+    node_modules/watchpack-chokidar2/node_modules/anymatch
+    node_modules/webpack-dev-server/node_modules/anymatch
+    fast-glob  <=2.2.7
+    Depends on vulnerable versions of micromatch
+    node_modules/fast-glob
+      globby  8.0.0 - 9.2.0
+      Depends on vulnerable versions of fast-glob
+      node_modules/globby
+    http-proxy-middleware  0.3.0 - 0.19.2
+    Depends on vulnerable versions of micromatch
+    node_modules/http-proxy-middleware
+    readdirp  2.2.0 - 2.2.1
+    Depends on vulnerable versions of micromatch
+    node_modules/watchpack-chokidar2/node_modules/readdirp
+    node_modules/webpack-dev-server/node_modules/readdirp
+
+ejs  <=3.1.9
+Severity: critical
+ejs template injection vulnerability - https://github.com/advisories/GHSA-phwq-j96m-2c2q
+ejs lacks certain pollution protection - https://github.com/advisories/GHSA-ghr5-ch3p-vcr6
+fix available via `npm audit fix`
+node_modules/ejs
+  webpack-bundle-analyzer  1.3.0 - 3.9.0
+  Depends on vulnerable versions of ejs
+  node_modules/webpack-bundle-analyzer
+
+follow-redirects  <=1.15.5
+Severity: high
+Exposure of Sensitive Information to an Unauthorized Actor in follow-redirects - https://github.com/advisories/GHSA-pw2r-vq6v-hr8c
+Exposure of sensitive information in follow-redirects - https://github.com/advisories/GHSA-74fj-2j2h-c42q
+Follow Redirects improperly handles URLs in the url.parse() function - https://github.com/advisories/GHSA-jchw-25xp-jwwc
+follow-redirects' Proxy-Authorization header kept across hosts - https://github.com/advisories/GHSA-cxjh-pqwp-8mfp
+fix available via `npm audit fix --force`
+Will install axios@1.7.2, which is a breaking change
+node_modules/follow-redirects
+
+html-minifier  *
+Severity: high
+kangax html-minifier REDoS vulnerability - https://github.com/advisories/GHSA-pfq8-rq6v-vf5m
+fix available via `npm audit fix`
+node_modules/html-minifier
+  html-webpack-plugin  1.4.0 - 4.0.0-beta.14
+  Depends on vulnerable versions of html-minifier
+  Depends on vulnerable versions of loader-utils
+  node_modules/html-webpack-plugin
+
+ip  *
+Severity: high
+ip SSRF improper categorization in isPublic - https://github.com/advisories/GHSA-2p57-rm9w-gvfp
+fix available via `npm audit fix --force`
+Will install @vue/cli-service@5.0.8, which is a breaking change
+node_modules/ip
+  dns-packet  <=5.2.4
+  Depends on vulnerable versions of ip
+  node_modules/dns-packet
+    multicast-dns  6.0.0 - 7.2.2
+    Depends on vulnerable versions of dns-packet
+    node_modules/multicast-dns
+      bonjour  >=3.3.1
+      Depends on vulnerable versions of multicast-dns
+      node_modules/bonjour
+
+json5  <1.0.2
+Severity: high
+Prototype Pollution in JSON5 via Parse Method - https://github.com/advisories/GHSA-9c47-m6qq-7p4h
+fix available via `npm audit fix`
+node_modules/html-webpack-plugin/node_modules/json5
+  loader-utils  <=1.4.0
+  Depends on vulnerable versions of json5
+  node_modules/html-webpack-plugin/node_modules/loader-utils
+
+
+node-forge  <=1.2.1
+Severity: high
+Prototype Pollution in node-forge debug API. - https://github.com/advisories/GHSA-5rrq-pxf6-6jx5
+URL parsing in node-forge could lead to undesired behavior. - https://github.com/advisories/GHSA-gf8q-jrpm-jvxq
+Improper Verification of Cryptographic Signature in `node-forge` - https://github.com/advisories/GHSA-2r2c-g63r-vccr
+Open Redirect in node-forge - https://github.com/advisories/GHSA-8fr3-hfg3-gpgp
+Improper Verification of Cryptographic Signature in node-forge - https://github.com/advisories/GHSA-cfm4-qjh2-4765
+Improper Verification of Cryptographic Signature in node-forge - https://github.com/advisories/GHSA-x4jg-mjrx-434g
+fix available via `npm audit fix --force`
+Will install @vue/cli-service@5.0.8, which is a breaking change
+node_modules/node-forge
+  selfsigned  1.1.1 - 1.10.14
+  Depends on vulnerable versions of node-forge
+  node_modules/selfsigned
+
+node-sass  1.2.3 - 7.0.3
+Severity: high
+Improper Certificate Validation in node-sass - https://github.com/advisories/GHSA-r8f7-9pfq-mjmv
+Depends on vulnerable versions of meow
+Depends on vulnerable versions of node-gyp
+Depends on vulnerable versions of request
+Depends on vulnerable versions of sass-graph
+fix available via `npm audit fix --force`
+Will install node-sass@9.0.0, which is a breaking change
+node_modules/node-sass
+
+nth-check  <2.0.1
+Severity: high
+Inefficient Regular Expression Complexity in nth-check - https://github.com/advisories/GHSA-rp65-9cf3-cjxr
+fix available via `npm audit fix`
+node_modules/svgo/node_modules/nth-check
+  css-select  <=3.1.0
+  Depends on vulnerable versions of nth-check
+  node_modules/svgo/node_modules/css-select
+    svgo  1.0.0 - 1.3.2
+    Depends on vulnerable versions of css-select
+    node_modules/svgo
+      postcss-svgo  <=5.0.0-rc.2
+      Depends on vulnerable versions of postcss
+      Depends on vulnerable versions of svgo
+      node_modules/postcss-svgo
+
+postcss  <=8.4.30
+Severity: moderate
+Regular Expression Denial of Service in postcss - https://github.com/advisories/GHSA-566m-qj78-rww5
+PostCSS line return parsing error - https://github.com/advisories/GHSA-7fh5-64p2-3v2j
+fix available via `npm audit fix --force`
+Will install @vue/cli-service@5.0.8, which is a breaking change
+node_modules/css-loader/node_modules/postcss
+node_modules/icss-utils/node_modules/postcss
+node_modules/postcss
+node_modules/postcss-modules-extract-imports/node_modules/postcss
+node_modules/postcss-modules-local-by-default/node_modules/postcss
+node_modules/postcss-modules-scope/node_modules/postcss
+node_modules/postcss-modules-values/node_modules/postcss
+  @vue/component-compiler-utils  *
+  Depends on vulnerable versions of postcss
+  node_modules/@vue/component-compiler-utils
+    vue-loader  15.0.0-beta.1 - 15.11.1
+    Depends on vulnerable versions of @vue/component-compiler-utils
+    node_modules/vue-loader
+  autoprefixer  1.0.20131222 - 9.8.8
+  Depends on vulnerable versions of postcss
+  node_modules/autoprefixer
+  css-declaration-sorter  <=5.1.2
+  Depends on vulnerable versions of postcss
+  node_modules/css-declaration-sorter
+  cssnano  <=4.1.11
+  Depends on vulnerable versions of cssnano-preset-default
+  Depends on vulnerable versions of postcss
+  node_modules/cssnano
+  cssnano-preset-default  <=4.0.8
+  Depends on vulnerable versions of css-declaration-sorter
+  Depends on vulnerable versions of cssnano-util-raw-cache
+  Depends on vulnerable versions of postcss
+  Depends on vulnerable versions of postcss-calc
+  Depends on vulnerable versions of postcss-colormin
+  Depends on vulnerable versions of postcss-convert-values
+  Depends on vulnerable versions of postcss-discard-comments
+  Depends on vulnerable versions of postcss-discard-duplicates
+  Depends on vulnerable versions of postcss-discard-empty
+  Depends on vulnerable versions of postcss-discard-overridden
+  Depends on vulnerable versions of postcss-merge-longhand
+  Depends on vulnerable versions of postcss-merge-rules
+  Depends on vulnerable versions of postcss-minify-font-values
+  Depends on vulnerable versions of postcss-minify-gradients
+  Depends on vulnerable versions of postcss-minify-params
+  Depends on vulnerable versions of postcss-minify-selectors
+  Depends on vulnerable versions of postcss-normalize-charset
+  Depends on vulnerable versions of postcss-normalize-display-values
+  Depends on vulnerable versions of postcss-normalize-positions
+  Depends on vulnerable versions of postcss-normalize-repeat-style
+  Depends on vulnerable versions of postcss-normalize-string
+  Depends on vulnerable versions of postcss-normalize-timing-functions
+  Depends on vulnerable versions of postcss-normalize-unicode
+  Depends on vulnerable versions of postcss-normalize-url
+  Depends on vulnerable versions of postcss-normalize-whitespace
+  Depends on vulnerable versions of postcss-ordered-values
+  Depends on vulnerable versions of postcss-reduce-initial
+  Depends on vulnerable versions of postcss-reduce-transforms
+  Depends on vulnerable versions of postcss-svgo
+  Depends on vulnerable versions of postcss-unique-selectors
+  node_modules/cssnano-preset-default
+  cssnano-util-raw-cache  *
+  Depends on vulnerable versions of postcss
+  node_modules/cssnano-util-raw-cache
+  icss-utils  <=3.0.1
+  Depends on vulnerable versions of postcss
+  node_modules/icss-utils
+  postcss-calc  4.1.0 - 7.0.5
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-calc
+  postcss-colormin  <=4.0.3
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-colormin
+  postcss-convert-values  <=4.0.1
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-convert-values
+  postcss-discard-comments  <=4.0.2
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-discard-comments
+  postcss-discard-duplicates  1.1.0 - 4.0.2
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-discard-duplicates
+  postcss-discard-empty  1.1.0 - 4.0.1
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-discard-empty
+  postcss-discard-overridden  <=4.0.1
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-discard-overridden
+  postcss-loader  <=4.0.1
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-loader
+  postcss-merge-longhand  <=4.0.11
+  Depends on vulnerable versions of postcss
+  Depends on vulnerable versions of stylehacks
+  node_modules/postcss-merge-longhand
+  postcss-merge-rules  <=4.0.3
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-merge-rules
+  postcss-minify-font-values  <=4.0.2
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-minify-font-values
+  postcss-minify-gradients  <=4.0.2
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-minify-gradients
+  postcss-minify-params  <=4.0.2
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-minify-params
+  postcss-minify-selectors  <=4.0.2
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-minify-selectors
+  postcss-modules-extract-imports  <=1.2.1
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-modules-extract-imports
+  postcss-modules-local-by-default  <=1.2.0
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-modules-local-by-default
+  postcss-modules-scope  <=1.1.0
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-modules-scope
+  postcss-modules-values  <=1.3.0
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-modules-values
+  postcss-normalize-charset  <=4.0.1
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-normalize-charset
+  postcss-normalize-display-values  <=4.0.2
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-normalize-display-values
+  postcss-normalize-positions  <=4.0.2
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-normalize-positions
+  postcss-normalize-repeat-style  <=4.0.2
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-normalize-repeat-style
+  postcss-normalize-string  <=4.0.2
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-normalize-string
+  postcss-normalize-timing-functions  <=4.0.2
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-normalize-timing-functions
+  postcss-normalize-unicode  <=4.0.1
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-normalize-unicode
+  postcss-normalize-url  1.1.0 - 4.0.1
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-normalize-url
+  postcss-normalize-whitespace  <=4.0.2
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-normalize-whitespace
+  postcss-ordered-values  <=4.1.2
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-ordered-values
+  postcss-reduce-initial  <=4.0.3
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-reduce-initial
+  postcss-reduce-transforms  <=4.0.2
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-reduce-transforms
+  postcss-unique-selectors  <=4.0.1
+  Depends on vulnerable versions of postcss
+  node_modules/postcss-unique-selectors
+  stylehacks  <=4.0.3
+  Depends on vulnerable versions of postcss
+  node_modules/stylehacks
+
+request  *
+Severity: moderate
+Server-Side Request Forgery in Request - https://github.com/advisories/GHSA-p8p7-x288-28g6
+Depends on vulnerable versions of tough-cookie
+fix available via `npm audit fix --force`
+Will install node-sass@9.0.0, which is a breaking change
+node_modules/request
+  @vue/cli-shared-utils  <=4.5.19
+  Depends on vulnerable versions of request
+  Depends on vulnerable versions of request-promise-native
+  node_modules/@vue/cli-shared-utils
+    @vue/cli-plugin-babel  3.4.0 - 4.5.19
+    Depends on vulnerable versions of @vue/cli-shared-utils
+    Depends on vulnerable versions of webpack
+    node_modules/@vue/cli-plugin-babel
+  node-gyp  <=7.1.2
+  Depends on vulnerable versions of request
+  Depends on vulnerable versions of semver
+  Depends on vulnerable versions of tar
+  node_modules/node-gyp
+  request-promise-core  *
+  Depends on vulnerable versions of request
+  node_modules/request-promise-core
+    request-promise-native  >=1.0.0
+    Depends on vulnerable versions of request
+    Depends on vulnerable versions of request-promise-core
+    Depends on vulnerable versions of tough-cookie
+    node_modules/request-promise-native
+
+scss-tokenizer  <=0.4.2
+Severity: high
+Regular expression denial of service in scss-tokenizer - https://github.com/advisories/GHSA-7mwh-4pqv-wmr8
+fix available via `npm audit fix --force`
+Will install node-sass@9.0.0, which is a breaking change
+node_modules/scss-tokenizer
+  sass-graph  2.2.0 - 4.0.0
+  Depends on vulnerable versions of scss-tokenizer
+  node_modules/sass-graph
+
+semver  <5.7.2
+Severity: moderate
+semver vulnerable to Regular Expression Denial of Service - https://github.com/advisories/GHSA-c2qf-rxjj-qqgw
+fix available via `npm audit fix --force`
+Will install node-sass@9.0.0, which is a breaking change
+node_modules/node-gyp/node_modules/semver
+
+serialize-javascript  <=3.0.0
+Severity: high
+Cross-Site Scripting in serialize-javascript - https://github.com/advisories/GHSA-h9rv-jmmf-4pgx
+Insecure serialization leading to RCE in serialize-javascript - https://github.com/advisories/GHSA-hxcc-f52p-wc94
+fix available via `npm audit fix --force`
+Will install compression-webpack-plugin@11.1.0, which is a breaking change
+node_modules/serialize-javascript
+  copy-webpack-plugin  4.3.0 - 5.0.4
+  Depends on vulnerable versions of cacache
+  Depends on vulnerable versions of serialize-javascript
+  node_modules/copy-webpack-plugin
+
+ssri  5.2.2 - 6.0.1
+Severity: high
+Regular Expression Denial of Service (ReDoS) - https://github.com/advisories/GHSA-vx3p-948g-6vhq
+fix available via `npm audit fix`
+node_modules/copy-webpack-plugin/node_modules/ssri
+  cacache  10.0.4 - 11.0.0
+  Depends on vulnerable versions of ssri
+  node_modules/copy-webpack-plugin/node_modules/cacache
+
+tar  <=6.2.0
+Severity: high
+Arbitrary File Creation/Overwrite due to insufficient absolute path sanitization - https://github.com/advisories/GHSA-3jfq-g458-7qm9
+Arbitrary File Creation/Overwrite on Windows via insufficient relative path sanitization - https://github.com/advisories/GHSA-5955-9wpr-37jh
+Denial of service while parsing a tar file due to lack of folders count validation - https://github.com/advisories/GHSA-f5x3-32g6-xq36
+fix available via `npm audit fix --force`
+Will install node-sass@9.0.0, which is a breaking change
+node_modules/tar
+
+tough-cookie  <4.1.3
+Severity: moderate
+tough-cookie Prototype Pollution vulnerability - https://github.com/advisories/GHSA-72xf-g2v4-qvf3
+fix available via `npm audit fix --force`
+Will install node-sass@9.0.0, which is a breaking change
+node_modules/tough-cookie
+
+trim-newlines  <3.0.1
+Severity: high
+Uncontrolled Resource Consumption in trim-newlines - https://github.com/advisories/GHSA-7p7h-4mm5-852v
+fix available via `npm audit fix --force`
+Will install node-sass@9.0.0, which is a breaking change
+node_modules/trim-newlines
+  meow  3.4.0 - 5.0.0
+  Depends on vulnerable versions of trim-newlines
+  node_modules/meow
+
+webpack-dev-middleware  <=5.3.3
+Severity: high
+Path traversal in webpack-dev-middleware - https://github.com/advisories/GHSA-wr3j-pwj9-hqq6
+fix available via `npm audit fix --force`
+Will install @vue/cli-service@5.0.8, which is a breaking change
+node_modules/webpack-dev-middleware
+
+103 vulnerabilities (1 low, 51 moderate, 46 high, 5 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
